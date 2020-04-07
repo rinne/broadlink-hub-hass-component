@@ -1,0 +1,15 @@
+"""Constants for Broadlink Hub"""
+
+DOMAIN = "broadlink_hub"
+
+DEFAULT_PORT = 8525
+DEFAULT_SSL = False
+
+BROADLINK_HUB_PLATFORMS = [ 'switch' ]
+
+SIGNAL_DEVICE_UPDATE = DOMAIN + ':' + 'DEVICE_UPDATE'
+SIGNAL_HUB_CONNECTION_ON = DOMAIN + ':' + 'HUB_CONNECTION_ON'
+SIGNAL_HUB_CONNECTION_OFF = DOMAIN + ':' + 'HUB_CONNECTION_OFF'
+
+def SIGNAL_NEW_SWITCH(entry):
+    return DOMAIN + ':' + 'NEW_SWITCH' + ':' + entry.entry_id
