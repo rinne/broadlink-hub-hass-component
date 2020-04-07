@@ -14,7 +14,7 @@ from homeassistant.helpers.event import async_call_later
 from homeassistant.helpers.typing import HomeAssistantType
 from homeassistant.helpers.dispatcher import async_dispatcher_connect, dispatcher_send
 
-from .const import (DOMAIN, DEFAULT_PORT, BROADLINK_HUB_PLATFORMS, SIGNAL_NEW_SWITCH,
+from .const import (DOMAIN, DEFAULT_PORT, BROADLINK_HUB_PLATFORMS, SIGNAL_NEW_SWITCH, SIGNAL_NEW_SENSOR,
                     SIGNAL_DEVICE_UPDATE, SIGNAL_HUB_CONNECTION_ON, SIGNAL_HUB_CONNECTION_OFF)
 from .connector import connectorStart, connectorStop
 
@@ -84,9 +84,13 @@ def device_update(hass: HomeAssistantType, entry, uid: str):
         dev['hass_entity_created'] = True
         if dev['device']['devClass'] in [ 'sp1', 'sp2', 'sp3', 'sp3s' ]:
             dispatcher_send(hass, SIGNAL_NEW_SWITCH(entry), uid)
+        if dev['device']['devClass'] in [ 'sp3s' ]:
+            dispatcher_send(hass, SIGNAL_NEW_SENSOR(entry), uid)
     else:
         if dev['hass_switch_entity'] is not None:
             dev['hass_switch_entity'].async_schedule_update_ha_state(True)
+        if dev['hass_sensor_entity'] is not None:
+            dev['hass_sensor_entity'].async_schedule_update_ha_state(True)
 
 def hub_connected(hass: HomeAssistantType, entry):
     _LOGGER.info("Connected: %s", entry.entry_id)

@@ -93,9 +93,11 @@ def run(hass, entry):
             message['hass_config_entry_id'] = entry.entry_id
             message['hass_entity_created'] = False
             message['hass_switch_entity'] = None
+            message['hass_sensor_entity'] = None
             if uid in data.dev:
                 message['hass_entity_created'] = data.dev[uid]['hass_entity_created']
                 message['hass_switch_entity'] = data.dev[uid]['hass_switch_entity']
+                message['hass_sensor_entity'] = data.dev[uid]['hass_sensor_entity']
             data.dev[uid] = message
         elif status == 'unreachable':
             uid = message['device']['uid']
