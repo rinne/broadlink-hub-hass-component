@@ -82,7 +82,7 @@ def device_update(hass: HomeAssistantType, entry, uid: str):
     _LOGGER.info("Update: %s:%s %s", entry.entry_id, uid, str(dev))
     if not dev['hass_entity_created']:
         dev['hass_entity_created'] = True
-        if dev['device']['devClass'] in [ 'sp1', 'sp2', 'sp3', 'sp3s' ]:
+        if dev['device']['devClass'] in [ 'sp1', 'sp2', 'sc1', 'sp3', 'sp3s' ]:
             dispatcher_send(hass, SIGNAL_NEW_SWITCH(entry), uid)
     else:
         if dev['hass_switch_entity'] is not None:
