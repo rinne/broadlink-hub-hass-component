@@ -6,7 +6,7 @@ import logging
 from homeassistant.const import STATE_OFF, STATE_ON
 from homeassistant.helpers.typing import HomeAssistantType
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
-from homeassistant.components.switch import SwitchDevice, DEVICE_CLASS_SWITCH
+from homeassistant.components.switch import SwitchDevice, DEVICE_CLASS_SWITCH, DEVICE_CLASS_OUTLET
 
 from .const import DOMAIN, SIGNAL_NEW_SWITCH
 from .entity import BroadlinkHubEntity
@@ -82,5 +82,9 @@ class BroadlinkHubSwitch(BroadlinkHubEntity, SwitchDevice):
     @property
     def device_class(self):
         """Return the class of this device."""
-        # Broadlink can't make difference between outlet and switch
-        return DEVICE_CLASS_SWITCH
+        dev = self._d
+        if dev['device']['devClass'] in [ 'sp1', 'sp2', 'sp3', 'sp3s' ]:
+            return DEVICE_CLASS_OUTLET
+        elif dev['device']['devClass'] in [ 'sc1' ]:
+            return DEVICE_CLASS_SWITCH
+        return None
