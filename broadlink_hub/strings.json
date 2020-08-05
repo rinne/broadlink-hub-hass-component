@@ -1,1 +1,23 @@
-.translations/en.json
+{
+	"config": {
+		"title": "Broadlink Hub",
+		"step": {
+			"user": {
+				"title": "Set up Broadlink Hub Connection",
+				"data": {
+					"host": "Host",
+					"username": "User name",
+					"password": "Password",
+					"port": "Port",
+					"ssl": "Control connection uses SSL"
+				}
+			}
+		},
+        "error": {
+			"invalid_port": "TCP port must be 1..65535",
+			"invalid_host": "Invalid host name or IP-address",
+			"missing_username": "User name is missing",
+			"missing_password": "Password is missing"
+		}
+	}
+}
