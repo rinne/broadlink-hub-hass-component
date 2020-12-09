@@ -83,8 +83,8 @@ class BroadlinkHubSwitch(BroadlinkHubEntity, SwitchDevice):
     def device_class(self):
         """Return the class of this device."""
         dev = self._d
-        if dev['device']['devClass'] in [ 'sp1', 'sp2', 'sp3', 'sp3s' ]:
+        if dev['device']['devClass'] in [ 'sp1', 'sp2', 'sp3', 'sp3s', 'sp4' ]:
             return DEVICE_CLASS_OUTLET
-        elif dev['device']['devClass'] in [ 'sc1' ]:
+        elif dev['device']['devClass'] in [ 'sc1', 'mcb1' ]:
             return DEVICE_CLASS_SWITCH
         return None
