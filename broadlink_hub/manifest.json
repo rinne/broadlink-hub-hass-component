@@ -1,6 +1,7 @@
 {
 	"domain": "broadlink_hub",
 	"name": "Broadlink Hub",
+    "version": "1.0.1",
 	"config_flow": true,
 	"documentation": "https://github.com/rinne/broadlink-hub-hass-component",
 	"requirements": [ "websocket-client==0.57.0" ],
