@@ -59,9 +59,9 @@ class BroadlinkHubSwitch(BroadlinkHubEntity, SwitchDevice):
         """Toggle the device."""
         dev = self._d
         if self.is_on:
-            return await self.sync_turn_off()
+            return await self.async_turn_off()
         else:
-            return await self.sync_turn_on()
+            return await self.async_turn_on()
         return (status == 200)
     
     @property
