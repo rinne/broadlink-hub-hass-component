@@ -6,7 +6,7 @@ import logging
 from homeassistant.const import STATE_OFF, STATE_ON
 from homeassistant.helpers.typing import HomeAssistantType
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
-from homeassistant.components.switch import SwitchDevice, DEVICE_CLASS_SWITCH, DEVICE_CLASS_OUTLET
+from homeassistant.components.switch import SwitchEntity, DEVICE_CLASS_SWITCH, DEVICE_CLASS_OUTLET
 
 from .const import DOMAIN, SIGNAL_NEW_SWITCH
 from .entity import BroadlinkHubEntity
@@ -36,7 +36,7 @@ async def async_setup_entry(hass: HomeAssistantType, entry, async_add_entities):
         connectorRelease(hass, entry)
     return True
 
-class BroadlinkHubSwitch(BroadlinkHubEntity, SwitchDevice):
+class BroadlinkHubSwitch(BroadlinkHubEntity, SwitchEntity):
     """Broadlink Hub switch entity"""
 
     def __init__(self, hass, entry, uid):
